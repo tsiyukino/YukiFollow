@@ -1,0 +1,61 @@
+# Yuki Follow — 日本語
+ui.no_avatar = このコンポーネントはアバターの中に置く必要があります（このオブジェクトとその親に VRC Avatar Descriptor がありません）。
+
+# Surface Anchor
+anchor.intro = メッシュのシェイプキーが変わっても、このオブジェクトをメッシュ表面に貼り付けたままにします（Blender の頂点ペアレントのように）。シェイプキーを何が動かしていても（メニュー、衣装切り替え、Modular Avatar、VRCFury）位置と傾きが追従します。アバターのビルド時に適用され、エディター上では動きません。
+anchor.settings = 設定
+anchor.surface = 追従するメッシュ
+anchor.surface.tip = このオブジェクトを貼り付けるメッシュ。空の場合はビルド時に最も近いメッシュを使います。
+anchor.find_nearest = 最寄りを検索
+anchor.follow_rotation = 傾きも追従
+anchor.follow_rotation.tip = 移動だけでなく表面の傾きにも合わせます。SPS ソケットでは挿入方向が追従するよう有効にしてください。
+anchor.sample_radius = サンプル半径
+anchor.sample_radius.tip = 動きを測るために使う、このオブジェクト周辺の表面の範囲。大きいほど滑らか、小さいほど細部に追従します。
+anchor.no_surface_now = 5 cm 以内にメッシュ表面がありません。オブジェクトをメッシュ上に移動するか、メッシュを指定してください。
+anchor.ignored = 無視するシェイプキー
+anchor.ignored.tip = このオブジェクトを動かしてはいけないシェイプキー。* は任意の文字列、大文字小文字は区別しません。
+anchor.ignored.sps = 自動で無視（この SPS ソケットの深度アニメーションで動くもの）：{0}
+anchor.bind = 配置
+anchor.bind.none = 未バインド：ビルド時のシェイプキー値を配置時の値とみなします。
+anchor.bind.moved = バインド後に移動されています：現在の位置を現在のシェイプキー値での配置とみなします。「再バインド」で確定してください。
+anchor.bind.corrected = 配置後にメッシュのシェイプキー値が変わりました。ビルド時に表面に合わせて {0} mm 移動します（Scene ビューのオレンジのマーカー）。
+anchor.bind.ok = 現在のシェイプキー値にバインド済みです。
+anchor.rebind = ここで再バインド（現在の位置・現在の値）
+anchor.motions = この点を動かすシェイプキー
+anchor.motions.hint = どれかがどこかでアニメーションされると、オブジェクトが追従します。値は 100% のときの移動量です。
+anchor.motions.none = このメッシュにこの点を動かすシェイプキーはないため、オブジェクトは動きません。
+anchor.motion_row = {0} mm · {1}°
+anchor.show_all = すべて表示（{0}）
+anchor.samples = {1} mm 以内の {0} 頂点で計測しています。
+anchor.far = 最も近い表面の頂点まで {0} mm あります。最寄りの表面に追従するため、意図した位置とずれる可能性があります。
+anchor.error.no_mesh = 指定したメッシュにメッシュデータがありません。
+anchor.error.no_surface = オブジェクト付近の表面頂点が少なすぎます。メッシュ上に移動するか、サンプル半径を大きくしてください。
+
+# Blendshape Sync
+sync.intro = アバター上のすべてのメッシュを、素体の同名シェイプキーに追従させます。「Breasts_big」などを持つ衣装や小物が、何が素体を動かしていても一緒に変わります。アバターのビルド時に適用され、シーンは変更しません。
+sync.duplicate = このアバターには Yuki Blendshape Sync が複数あります。最初のものだけが使われます。
+sync.settings = 設定
+sync.sources = ソースメッシュ
+sync.sources.tip = 他のメッシュが追従するシェイプキーを持つメッシュ。空の場合はアバター直下の「Body…」という名前のメッシュを使います。
+sync.sources.auto = 自動：{0}
+sync.sources.none = アバター直下に「Body…」という名前のメッシュがありません。素体メッシュをソースメッシュに追加してください。
+sync.excluded_meshes = 除外するメッシュ
+sync.excluded_meshes.tip = 自分のシェイプキーを保つメッシュ。
+sync.excluded_names = 除外するシェイプキー
+sync.excluded_names.tip = 同期しない名前。* は任意の文字列、大文字小文字は区別しません。既定では素体の Shrink 系、口の形、区切り線を除外します。
+sync.copy_defaults = シーンの値をコピー
+sync.copy_defaults.tip = ビルド時に素体のシーン上の値を追従側にコピーします。
+sync.animations = アニメーションに追従
+sync.animations.tip = 素体のシェイプキーを変えるすべてのアニメーションに追従側を追加します。
+sync.preview = 同期される内容
+sync.preview.none = ソースメッシュと同じ名前のシェイプキーを持つメッシュはありません。
+sync.preview.summary = {0} 個のメッシュが {1} 個のシェイプキーに追従します。
+sync.preview.differs = 現在 {0} 個が異なる
+sync.apply_now.hint = 現在 {0} 個の値が素体と異なります。ビルド時にはいずれにせよコピーされます。シーンに適用するとエディター上でも結果を確認できます。
+sync.apply_now = シーンの値を今すぐ適用
+
+# Build errors (NDMF)
+error.anchor_failed = {0} の Surface Anchor を適用できませんでした：{1}
+error.no_surface = {0} の Surface Anchor：オブジェクト付近にメッシュ表面が見つからないため、何にも追従しません。
+error.transform_animated = {0} の Surface Anchor：オブジェクト自身の位置または回転がアニメーションされています。それらは表面の点からの相対になります。意図しない場合は子オブジェクトに移してください。
+error.sync_duplicate = このアバターには Yuki Blendshape Sync が複数あります。最初のものだけが使われます。

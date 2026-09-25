@@ -1,0 +1,24 @@
+{
+    "name": "TsiYuki.Follow.Editor",
+    "rootNamespace": "TsiYuki.Follow.Editor",
+    "references": [
+        "TsiYuki.Follow",
+        "TsiYuki.Core.Editor",
+        "nadena.dev.ndmf",
+        "nadena.dev.ndmf.runtime",
+        "nadena.dev.ndmf.vrchat",
+        "VRC.SDKBase",
+        "VRC.SDK3A"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

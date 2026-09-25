@@ -1,0 +1,61 @@
+# Yuki Follow — 简体中文
+ui.no_avatar = 此组件必须放在模型内（在本物体及其父级上找不到 VRC Avatar Descriptor）。
+
+# Surface Anchor
+anchor.intro = 让这个物体在网格的形态键变化时贴在网格表面上，类似 Blender 的顶点父级。无论形态键由什么驱动（菜单、衣柜、Modular Avatar、VRCFury），物体都会跟随位置和倾斜。在模型构建时生效，编辑器中物体不会移动。
+anchor.settings = 设置
+anchor.surface = 贴合网格
+anchor.surface.tip = 这个物体贴在哪个网格上。留空时，构建时自动使用离它最近的网格。
+anchor.find_nearest = 查找最近网格
+anchor.follow_rotation = 跟随倾斜
+anchor.follow_rotation.tip = 不仅跟随移动，也随表面一起倾斜。SPS socket 需要开启，插入方向才会跟着变。
+anchor.sample_radius = 采样半径
+anchor.sample_radius.tip = 以这个物体为中心、用于测量其运动的表面范围。越大越平滑，越小越贴合细节。
+anchor.no_surface_now = 5 cm 内没有网格表面。请把物体移到网格上，或手动指定贴合网格。
+anchor.ignored = 忽略的形态键
+anchor.ignored.tip = 不应带动这个物体的形态键。* 匹配任意内容，不区分大小写。
+anchor.ignored.sps = 自动忽略（由这个 SPS socket 的深度动画驱动）：{0}
+anchor.bind = 放置状态
+anchor.bind.none = 尚未绑定：构建时网格的形态键数值会被当作放置时的数值。
+anchor.bind.moved = 绑定后物体被移动过：当前位置视为在当前形态键数值下放置。点“重新绑定”确认。
+anchor.bind.corrected = 放置之后网格的形态键数值变了；构建时它会移动 {0} mm 以保持贴在表面上（Scene 视图中的橙色标记）。
+anchor.bind.ok = 已绑定到当前的形态键数值。
+anchor.rebind = 在这里重新绑定（当前位置、当前数值）
+anchor.motions = 会移动这个点的形态键
+anchor.motions.hint = 其中任何一个在某处被动画驱动时，物体都会跟随。数值为 100% 时的移动量。
+anchor.motions.none = 这个网格没有会移动这个点的形态键，所以物体不会移动。
+anchor.motion_row = {0} mm · {1}°
+anchor.show_all = 显示全部（{0}）
+anchor.samples = 以 {1} mm 内的 {0} 个顶点测量。
+anchor.far = 最近的表面顶点距离 {0} mm。物体会跟随离它最近的那块表面，可能不是你想要的位置。
+anchor.error.no_mesh = 贴合网格没有 Mesh。
+anchor.error.no_surface = 物体附近的表面顶点太少。请把它移到网格上，或调大采样半径。
+
+# Blendshape Sync
+sync.intro = 让模型上所有网格跟随身体的同名形态键：带有例如“Breasts_big”的衣服和饰品会和身体一起变化，无论身体的形态键由什么驱动。在模型构建时生效，场景不会被修改。
+sync.duplicate = 这个模型上有多个 Yuki Blendshape Sync，只使用第一个。
+sync.settings = 设置
+sync.sources = 源网格
+sync.sources.tip = 其他网格跟随这些网格的形态键。留空时使用模型根物体下名字以“Body”开头的网格。
+sync.sources.auto = 自动：{0}
+sync.sources.none = 模型根物体下没有名字以“Body”开头的网格。请把身体网格加入源网格。
+sync.excluded_meshes = 排除的网格
+sync.excluded_meshes.tip = 保持自身形态键、不跟随的网格。
+sync.excluded_names = 排除的形态键
+sync.excluded_names.tip = 永不同步的名字。* 匹配任意内容，不区分大小写。默认排除身体的 Shrink 形态键、口型和分隔线。
+sync.copy_defaults = 复制场景数值
+sync.copy_defaults.tip = 构建时把身体在场景中的数值复制给跟随的网格。
+sync.animations = 跟随动画
+sync.animations.tip = 把跟随的网格加入所有改变身体形态键的动画。
+sync.preview = 将要同步的内容
+sync.preview.none = 没有其他网格拥有与源网格同名的形态键。
+sync.preview.summary = {0} 个网格跟随 {1} 个形态键。
+sync.preview.differs = 当前有 {0} 个不同
+sync.apply_now.hint = 当前有 {0} 个数值与身体不同。构建时无论如何都会复制；应用到场景后可以在编辑器中直接看到效果。
+sync.apply_now = 立即应用场景数值
+
+# Build errors (NDMF)
+error.anchor_failed = {0} 上的 Surface Anchor 无法应用：{1}
+error.no_surface = {0} 上的 Surface Anchor：物体附近找不到网格表面，它不会跟随任何东西。
+error.transform_animated = {0} 上的 Surface Anchor：物体自身的位置或旋转被动画驱动。这些动画现在会相对于表面点生效；如非本意，请把它们放到子物体上。
+error.sync_duplicate = 这个模型上有多个 Yuki Blendshape Sync，只使用第一个。

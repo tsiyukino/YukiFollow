@@ -1,0 +1,18 @@
+project: YukiFollow
+kind: unity-upm-package
+language: csharp
+description: >
+  VPM package: objects anchored to a skinned mesh surface that follow its
+  blendshapes, and automatic body-to-outfit blendshape sync. Both are NDMF
+  passes that rewrite animation clips at build time.
+source:
+  - Runtime/
+  - Editor/
+docs: docs/
+tests:
+  command: none
+  note: >
+    Compiles only inside a Unity 2022.3 project with the VRChat Avatars SDK,
+    NDMF (>=1.11) and TsiYuki Core installed. None exist yet.
+conventions:
+  runtime-deps: [VRChat Avatars SDK 3, NDMF, TsiYuki Core]

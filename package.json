@@ -1,0 +1,26 @@
+{
+  "name": "moe.tsiyuki.follow",
+  "displayName": "Yuki Follow",
+  "version": "0.1.0",
+  "unity": "2022.3",
+  "description": "Objects that stay on a mesh surface while its blendshapes change, and outfits that follow the body's blendshapes, applied non-destructively at build time through NDMF.",
+  "author": {
+    "name": "TsiYuki",
+    "url": "https://github.com/tsiyukino"
+  },
+  "license": "MIT",
+  "documentationUrl": "https://github.com/tsiyukino/YukiFollow",
+  "changelogUrl": "https://github.com/tsiyukino/YukiFollow/blob/main/CHANGELOG.md",
+  "vpmDependencies": {
+    "com.vrchat.avatars": ">=3.7.0",
+    "nadena.dev.ndmf": ">=1.11.0 <2.0.0",
+    "moe.tsiyuki.core": ">=0.3.0"
+  },
+  "keywords": [
+    "vrchat",
+    "blendshape",
+    "sps",
+    "ndmf",
+    "non-destructive"
+  ]
+}

@@ -1,0 +1,61 @@
+# Yuki Follow — English
+ui.no_avatar = This component must be inside an avatar (no VRC Avatar Descriptor found on this object or its parents).
+
+# Surface Anchor
+anchor.intro = Keeps this object on the surface of a mesh while the mesh's blendshapes change, like a vertex parent in Blender. It follows position and tilt wherever the blendshape is animated from (menus, wardrobes, Modular Avatar, VRCFury). Applied when the avatar is built; nothing moves in the editor.
+anchor.settings = Settings
+anchor.surface = Surface
+anchor.surface.tip = Mesh this object sticks to. Empty uses the mesh whose surface is nearest when the avatar is built.
+anchor.find_nearest = Find nearest
+anchor.follow_rotation = Follow tilt
+anchor.follow_rotation.tip = Tilt with the surface as well as move with it. SPS sockets need this so the insertion direction follows.
+anchor.sample_radius = Sample radius
+anchor.sample_radius.tip = Radius of the surface patch around this object used to measure how it moves. Larger is smoother, smaller follows fine detail.
+anchor.no_surface_now = No mesh surface within 5 cm. Move the object onto a mesh or choose the surface.
+anchor.ignored = Ignored blendshapes
+anchor.ignored.tip = Blendshapes that must not move this object. * matches anything; case is ignored.
+anchor.ignored.sps = Ignored automatically (driven by this SPS socket's depth animations): {0}
+anchor.bind = Placement
+anchor.bind.none = Not bound yet: the blendshape values the mesh has at build time are taken as the ones it was placed with.
+anchor.bind.moved = Moved since binding: the current place counts as placed at the current blendshape values. Press Rebind to confirm.
+anchor.bind.corrected = The mesh's blendshape values changed since this was placed; at build time it moves {0} mm to stay on the surface (orange marker in the Scene view).
+anchor.bind.ok = Bound to the current blendshape values.
+anchor.rebind = Rebind here (current place, current values)
+anchor.motions = Blendshapes that move this point
+anchor.motions.hint = Any of these that is animated somewhere makes the object follow. Values are for 100%.
+anchor.motions.none = No blendshape of this mesh moves this point, so it will not move.
+anchor.motion_row = {0} mm · {1}°
+anchor.show_all = Show all ({0})
+anchor.samples = Measured on {0} vertices within {1} mm.
+anchor.far = The nearest surface vertex is {0} mm away. The object follows the surface patch nearest to it, which may not be what you meant.
+anchor.error.no_mesh = The surface has no mesh.
+anchor.error.no_surface = Too few vertices of the surface near this object. Move it onto the mesh or raise the sample radius.
+
+# Blendshape Sync
+sync.intro = Makes every mesh on the avatar follow the body's blendshapes of the same name: outfits and accessories that ship with e.g. "Breasts_big" change together with the body, whatever animates it. Applied when the avatar is built; the scene is not changed.
+sync.duplicate = This avatar has more than one Yuki Blendshape Sync; only the first one is used.
+sync.settings = Settings
+sync.sources = Source meshes
+sync.sources.tip = Meshes whose blendshapes the others follow. Empty uses the meshes named "Body…" directly under the avatar.
+sync.sources.auto = Automatic: {0}
+sync.sources.none = No mesh named "Body…" directly under the avatar. Add the body mesh to Source meshes.
+sync.excluded_meshes = Excluded meshes
+sync.excluded_meshes.tip = Meshes that keep their own blendshapes.
+sync.excluded_names = Excluded blendshapes
+sync.excluded_names.tip = Names never synced. * matches anything, case is ignored. The defaults leave out the body's Shrink blendshapes, visemes and separator lines.
+sync.copy_defaults = Copy scene values
+sync.copy_defaults.tip = Give followers the body's scene values when the avatar is built.
+sync.animations = Follow animations
+sync.animations.tip = Add the followers to every animation that changes the body's blendshape.
+sync.preview = What will be synced
+sync.preview.none = No other mesh has a blendshape with the same name as a source mesh.
+sync.preview.summary = {0} mesh(es) follow {1} blendshape(s).
+sync.preview.differs = {0} differ now
+sync.apply_now.hint = {0} value(s) differ from the body right now. They are copied at build time anyway; apply them to the scene to see the result in the editor.
+sync.apply_now = Apply scene values now
+
+# Build errors (NDMF)
+error.anchor_failed = Surface Anchor on {0} could not be applied: {1}
+error.no_surface = Surface Anchor on {0}: no mesh surface found near the object, so it will not follow anything.
+error.transform_animated = Surface Anchor on {0}: the object's own position or rotation is animated. Those animations now act relative to the surface point; put them on a child object if that is not intended.
+error.sync_duplicate = This avatar has more than one Yuki Blendshape Sync; only the first one is used.
