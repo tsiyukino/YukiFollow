@@ -37,7 +37,7 @@ namespace TsiYuki.Follow.Editor
                 catch (System.Exception e)
                 {
                     Debug.LogException(e, anchor);
-                    FollowText.Report(ErrorSeverity.NonFatal, "error.anchor_failed", anchor, anchor.name, e.Message);
+                    FollowText.Errors.Report(ErrorSeverity.NonFatal, "error.anchor_failed", anchor, anchor.name, e.Message);
                 }
             }
             foreach (var anchor in anchors)
@@ -50,7 +50,7 @@ namespace TsiYuki.Follow.Editor
             var surface = anchor.surface != null ? anchor.surface : SurfaceSolver.FindNearestSurface(ctx.AvatarRootTransform, target.position);
             if (surface == null)
             {
-                FollowText.Report(ErrorSeverity.NonFatal, "error.no_surface", anchor, anchor.name);
+                FollowText.Errors.Report(ErrorSeverity.NonFatal, "error.no_surface", anchor, anchor.name);
                 return;
             }
 
@@ -59,7 +59,7 @@ namespace TsiYuki.Follow.Editor
                 AnchorBinding.IgnoreFilter(anchor));
             if (solution.Error != null)
             {
-                FollowText.Report(ErrorSeverity.NonFatal, "error.no_surface", anchor, anchor.name);
+                FollowText.Errors.Report(ErrorSeverity.NonFatal, "error.no_surface", anchor, anchor.name);
                 return;
             }
 
@@ -181,7 +181,7 @@ namespace TsiYuki.Follow.Editor
                 foreach (var b in clip.GetFloatCurveBindings())
                     if (b.path == path && b.type == typeof(Transform))
                     {
-                        FollowText.Report(ErrorSeverity.NonFatal, "error.transform_animated", anchor, anchor.name);
+                        FollowText.Errors.Report(ErrorSeverity.NonFatal, "error.transform_animated", anchor, anchor.name);
                         return;
                     }
         }

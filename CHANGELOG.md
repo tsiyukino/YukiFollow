@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1] - 2026-09-26
+
+### Changed
+- Build errors are reported to NDMF through TsiYuki Core's `YukiNdmfReport` instead of this package's own copy.
+  The messages are unchanged. Requires TsiYuki Core 0.4.0.
+
 ## [0.2.0] - 2026-09-26
 
 ### Added

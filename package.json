@@ -1,7 +1,7 @@
 {
   "name": "moe.tsiyuki.follow",
   "displayName": "Yuki Follow",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "unity": "2022.3",
   "description": "Objects that stay on a mesh surface while its blendshapes change, outfits that follow the body's blendshapes, and parts that shade like the body at their seam, applied non-destructively at build time through NDMF.",
   "author": {
@@ -14,7 +14,7 @@
   "vpmDependencies": {
     "com.vrchat.avatars": ">=3.7.0",
     "nadena.dev.ndmf": ">=1.11.0 <2.0.0",
-    "moe.tsiyuki.core": ">=0.3.0"
+    "moe.tsiyuki.core": ">=0.4.0"
   },
   "keywords": [
     "vrchat",

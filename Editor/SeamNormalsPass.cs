@@ -22,7 +22,7 @@ namespace TsiYuki.Follow.Editor
                 catch (Exception e)
                 {
                     Debug.LogException(e, config);
-                    FollowText.Report(ErrorSeverity.NonFatal, "error.seam_failed", config, config.name, e.Message);
+                    FollowText.Errors.Report(ErrorSeverity.NonFatal, "error.seam_failed", config, config.name, e.Message);
                 }
             }
             foreach (var config in configs)
@@ -39,14 +39,14 @@ namespace TsiYuki.Follow.Editor
             var surface = ResolveSurface(ctx.AvatarRootTransform, config, renderer, part);
             if (surface == null)
             {
-                FollowText.Report(ErrorSeverity.NonFatal, "error.seam_no_surface", config, config.name);
+                FollowText.Errors.Report(ErrorSeverity.NonFatal, "error.seam_no_surface", config, config.name);
                 return;
             }
 
             var result = SeamNormalSolver.Solve(part, Geometry(surface, out _), config.blendWidth, config.seamGap);
             if (result.Error != null)
             {
-                FollowText.Report(ErrorSeverity.NonFatal, "error.seam_" + result.Error, config, config.name, (config.seamGap * 1000f).ToString("F1"));
+                FollowText.Errors.Report(ErrorSeverity.NonFatal, "error.seam_" + result.Error, config, config.name, (config.seamGap * 1000f).ToString("F1"));
                 return;
             }
 

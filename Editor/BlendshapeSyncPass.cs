@@ -81,7 +81,7 @@ namespace TsiYuki.Follow.Editor
             var configs = ctx.AvatarRootObject.GetComponentsInChildren<YukiBlendshapeSync>(true);
             if (configs.Length == 0) return;
             if (configs.Length > 1)
-                FollowText.Report(ErrorSeverity.Information, "error.sync_duplicate", configs[0]);
+                FollowText.Errors.Report(ErrorSeverity.Information, "error.sync_duplicate", configs[0]);
             var config = configs[0];
             var plan = SyncPlan.Resolve(ctx.AvatarRootTransform, config);
 
