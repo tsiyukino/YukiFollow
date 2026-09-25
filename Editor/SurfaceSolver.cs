@@ -46,10 +46,11 @@ namespace TsiYuki.Follow.Editor
         public const float MinDistance = 0.00005f; // 0.05 mm
         public const float MinAngle = 0.05f;       // degrees
 
-        /// <summary>World-space vertex positions and per-vertex skinning matrices.</summary>
+        /// <summary>World-space vertex positions and normals, and per-vertex skinning matrices.</summary>
         internal sealed class Skinned
         {
             public Vector3[] Positions;
+            public Vector3[] Normals;
             public Matrix4x4[] Skin;
         }
 
@@ -168,10 +169,13 @@ namespace TsiYuki.Follow.Editor
         public static Skinned Skin(SkinnedMeshRenderer smr, Mesh mesh, float[] shapeWeights)
         {
             var vertices = mesh.vertices;
+            var normals = mesh.normals;
             var n = vertices.Length;
+            bool hasNormals = normals.Length == n;
             if (shapeWeights != null)
             {
                 var deltas = new Vector3[n];
+                var deltaNormals = new Vector3[n];
                 for (int b = 0; b < shapeWeights.Length && b < mesh.blendShapeCount; b++)
                 {
                     float w = shapeWeights[b];
@@ -180,9 +184,11 @@ namespace TsiYuki.Follow.Editor
                     if (frame < 0) continue;
                     float fw = mesh.GetBlendShapeFrameWeight(b, frame);
                     if (fw == 0f) fw = 100f;
-                    mesh.GetBlendShapeFrameVertices(b, frame, deltas, null, null);
+                    mesh.GetBlendShapeFrameVertices(b, frame, deltas, deltaNormals, null);
                     float s = w / fw;
                     for (int i = 0; i < n; i++) vertices[i] += deltas[i] * s;
+                    if (hasNormals)
+                        for (int i = 0; i < n; i++) normals[i] += deltaNormals[i] * s;
                 }
             }
 
@@ -222,9 +228,22 @@ namespace TsiYuki.Follow.Editor
             }
 
             var positions = new Vector3[n];
-            for (int i = 0; i < n; i++) positions[i] = skin[i].MultiplyPoint3x4(vertices[i]);
-            return new Skinned { Positions = positions, Skin = skin };
+            var worldNormals = new Vector3[n];
+            for (int i = 0; i < n; i++)
+            {
+                positions[i] = skin[i].MultiplyPoint3x4(vertices[i]);
+                worldNormals[i] = hasNormals ? WorldNormal(skin[i], normals[i]) : Vector3.up;
+            }
+            return new Skinned { Positions = positions, Normals = worldNormals, Skin = skin };
         }
+
+        /// <summary>A mesh-space normal after skinning (inverse transpose, so scale does not tilt it).</summary>
+        public static Vector3 WorldNormal(Matrix4x4 skin, Vector3 meshNormal) =>
+            skin.inverse.transpose.MultiplyVector(meshNormal).normalized;
+
+        /// <summary>The mesh-space normal that skins to the given world normal.</summary>
+        public static Vector3 MeshNormal(Matrix4x4 skin, Vector3 worldNormal) =>
+            skin.transpose.MultiplyVector(worldNormal).normalized;
 
         /// <summary>Distance from a point to the nearest vertex of the mesh at its current weights.</summary>
         public static float NearestVertexDistance(SkinnedMeshRenderer smr, Vector3 point)
@@ -240,13 +259,13 @@ namespace TsiYuki.Follow.Editor
         }
 
         /// <summary>The avatar mesh whose surface is nearest to a point, or null beyond 5 cm.</summary>
-        public static SkinnedMeshRenderer FindNearestSurface(Transform avatarRoot, Vector3 point)
+        public static SkinnedMeshRenderer FindNearestSurface(Transform avatarRoot, Vector3 point, SkinnedMeshRenderer exclude = null)
         {
             SkinnedMeshRenderer best = null;
             float bestDistance = 0.05f;
             foreach (var smr in avatarRoot.GetComponentsInChildren<SkinnedMeshRenderer>(true))
             {
-                if (smr.sharedMesh == null || smr.sharedMesh.blendShapeCount == 0) continue;
+                if (smr == exclude || smr.sharedMesh == null || smr.sharedMesh.blendShapeCount == 0) continue;
                 var bounds = smr.bounds;
                 if (bounds.size != Vector3.zero && bounds.SqrDistance(point) > bestDistance * bestDistance * 4f) continue;
                 var d = NearestVertexDistance(smr, point);

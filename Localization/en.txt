@@ -54,8 +54,26 @@ sync.preview.differs = {0} differ now
 sync.apply_now.hint = {0} value(s) differ from the body right now. They are copied at build time anyway; apply them to the scene to see the result in the editor.
 sync.apply_now = Apply scene values now
 
+# Seam Normals
+seam.intro = Makes this mesh shade like the body where the two meet. A separate mesh that fills a hole in the body keeps its own normals, so the seam shows under some lighting. When the avatar is built, the normals along the seam are replaced by the body's and fade back to this mesh's own. Nothing changes in the editor.
+seam.settings = Settings
+seam.surface = Surface
+seam.surface.tip = Mesh this one blends into. Empty uses the mesh nearest to the seam when the avatar is built.
+seam.surface.auto = Automatic: {0}
+seam.blend_width = Blend width
+seam.blend_width.tip = Distance along this mesh from the seam over which the normals return to their own. Wider is softer; keep it short of detail that should keep its own shading.
+seam.seam_gap = Seam gap
+seam.seam_gap.tip = Open edges of this mesh closer than this to the surface count as the seam.
+seam.no_surface_now = No mesh surface near this mesh's open edges. Choose the surface.
+seam.preview = What the build will do
+seam.preview.summary = {0} vertices on the seam, {1} vertices blended. Normals turn {2}° on average, {3}° at most.
+seam.error.no_seam = No open edge of this mesh lies within {0} mm of the surface, so there is no seam to blend. Check the surface or raise the seam gap.
+
 # Build errors (NDMF)
 error.anchor_failed = Surface Anchor on {0} could not be applied: {1}
 error.no_surface = Surface Anchor on {0}: no mesh surface found near the object, so it will not follow anything.
 error.transform_animated = Surface Anchor on {0}: the object's own position or rotation is animated. Those animations now act relative to the surface point; put them on a child object if that is not intended.
 error.sync_duplicate = This avatar has more than one Yuki Blendshape Sync; only the first one is used.
+error.seam_failed = Seam Normals on {0} could not be applied: {1}
+error.seam_no_surface = Seam Normals on {0}: no mesh surface found near its open edges, so its normals are left as they are.
+error.seam_no_seam = Seam Normals on {0}: no open edge lies within {1} mm of the surface, so its normals are left as they are.

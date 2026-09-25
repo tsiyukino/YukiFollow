@@ -6,10 +6,11 @@ using nadena.dev.ndmf.animator;
 namespace TsiYuki.Follow.Editor
 {
     /// <summary>
-    /// Both steps rewrite animation clips, so they run late (Optimizing): after Modular Avatar,
+    /// Sync and anchors rewrite animation clips, so they run late (Optimizing): after Modular Avatar,
     /// VRCFury and the wardrobe have produced every clip that drives a blendshape, and before
     /// Avatar Optimizer merges meshes and renames their blendshapes. Sync runs first so that
-    /// anchors on outfits see the outfit's newly synced animations.
+    /// anchors on outfits see the outfit's newly synced animations. Seam normals run last, at the
+    /// synced blendshape values and before Avatar Optimizer removes body polygons under a part.
     /// </summary>
     public sealed class FollowPlugin : Plugin<FollowPlugin>
     {
@@ -29,6 +30,7 @@ namespace TsiYuki.Follow.Editor
                 {
                     seq.Run("Sync blendshapes", BlendshapeSyncPass.Run);
                     seq.Run("Anchor objects to surfaces", SurfaceAnchorPass.Run);
+                    seq.Run("Match seam normals", SeamNormalsPass.Run);
                 });
         }
     }

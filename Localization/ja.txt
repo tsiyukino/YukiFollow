@@ -54,8 +54,26 @@ sync.preview.differs = 現在 {0} 個が異なる
 sync.apply_now.hint = 現在 {0} 個の値が素体と異なります。ビルド時にはいずれにせよコピーされます。シーンに適用するとエディター上でも結果を確認できます。
 sync.apply_now = シーンの値を今すぐ適用
 
+# Seam Normals
+seam.intro = 素体と接する部分で、このメッシュの陰影を素体に合わせます。素体の穴を埋める別メッシュは自分の法線を持つため、ライティングによっては継ぎ目が見えます。アバターのビルド時に、継ぎ目の法線を素体の法線に置き換え、このメッシュ自身の法線へ徐々に戻します。エディター上では何も変わりません。
+seam.settings = 設定
+seam.surface = 合わせるメッシュ
+seam.surface.tip = このメッシュをなじませる先のメッシュ。空の場合はビルド時に継ぎ目に最も近いメッシュを使います。
+seam.surface.auto = 自動：{0}
+seam.blend_width = なじませ幅
+seam.blend_width.tip = 継ぎ目からこのメッシュに沿ってどこまでで自分の法線に戻るか。広いほど柔らかくなります。自分の陰影を残したい部分にかからない幅にしてください。
+seam.seam_gap = 継ぎ目の距離
+seam.seam_gap.tip = このメッシュの開いた辺が表面からこれより近いとき、継ぎ目とみなします。
+seam.no_surface_now = このメッシュの開いた辺の近くにメッシュ表面がありません。合わせるメッシュを指定してください。
+seam.preview = ビルド時に行うこと
+seam.preview.summary = 継ぎ目の頂点 {0} 個、なじませる頂点 {1} 個。法線の回転は平均 {2}°、最大 {3}°。
+seam.error.no_seam = このメッシュの開いた辺が表面から {0} mm 以内にないため、なじませる継ぎ目がありません。合わせるメッシュを確認するか、継ぎ目の距離を広げてください。
+
 # Build errors (NDMF)
 error.anchor_failed = {0} の Surface Anchor を適用できませんでした：{1}
 error.no_surface = {0} の Surface Anchor：オブジェクト付近にメッシュ表面が見つからないため、何にも追従しません。
 error.transform_animated = {0} の Surface Anchor：オブジェクト自身の位置または回転がアニメーションされています。それらは表面の点からの相対になります。意図しない場合は子オブジェクトに移してください。
 error.sync_duplicate = このアバターには Yuki Blendshape Sync が複数あります。最初のものだけが使われます。
+error.seam_failed = {0} の Seam Normals を適用できませんでした：{1}
+error.seam_no_surface = {0} の Seam Normals：開いた辺の近くにメッシュ表面が見つからないため、法線はそのままです。
+error.seam_no_seam = {0} の Seam Normals：表面から {1} mm 以内に開いた辺がないため、法線はそのままです。

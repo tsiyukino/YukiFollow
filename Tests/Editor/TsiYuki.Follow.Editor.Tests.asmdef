@@ -1,0 +1,27 @@
+{
+    "name": "TsiYuki.Follow.Editor.Tests",
+    "rootNamespace": "TsiYuki.Follow.Editor.Tests",
+    "references": [
+        "TsiYuki.Follow",
+        "TsiYuki.Follow.Editor",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "VRCSDKBase.dll",
+        "VRCSDK3A.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

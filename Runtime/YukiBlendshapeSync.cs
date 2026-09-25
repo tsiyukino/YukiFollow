@@ -11,7 +11,7 @@ namespace TsiYuki.Follow
     ///
     /// Applied when the avatar is built; the scene is not changed.
     /// </summary>
-    [AddComponentMenu("TsiYuki/Yuki Blendshape Sync")]
+    [AddComponentMenu("TsiYuki/Follow/Yuki Blendshape Sync")]
     [DisallowMultipleComponent]
     [HelpURL("https://github.com/tsiyukino/YukiFollow")]
     public sealed class YukiBlendshapeSync : MonoBehaviour, IEditorOnly

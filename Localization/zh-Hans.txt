@@ -54,8 +54,26 @@ sync.preview.differs = 当前有 {0} 个不同
 sync.apply_now.hint = 当前有 {0} 个数值与身体不同。构建时无论如何都会复制；应用到场景后可以在编辑器中直接看到效果。
 sync.apply_now = 立即应用场景数值
 
+# Seam Normals
+seam.intro = 让这个网格在和身体相接的地方与身体明暗一致。填补身体开口的独立网格保留着自己的法线，在某些光照下接缝会显出来。模型构建时，接缝处的法线会换成身体的法线，并逐渐过渡回这个网格自己的法线。编辑器中不会有变化。
+seam.settings = 设置
+seam.surface = 过渡到的网格
+seam.surface.tip = 这个网格过渡到哪个网格。留空时，构建时自动使用离接缝最近的网格。
+seam.surface.auto = 自动：{0}
+seam.blend_width = 过渡宽度
+seam.blend_width.tip = 从接缝沿着这个网格走多远，法线就完全回到自己的。越宽过渡越柔和；不要宽到覆盖应保留自身明暗的细节。
+seam.seam_gap = 接缝距离
+seam.seam_gap.tip = 这个网格的开放边离表面比这更近时，算作接缝。
+seam.no_surface_now = 这个网格的开放边附近没有网格表面。请指定过渡到的网格。
+seam.preview = 构建时会做什么
+seam.preview.summary = 接缝上有 {0} 个顶点，{1} 个顶点参与过渡。法线平均转动 {2}°，最大 {3}°。
+seam.error.no_seam = 这个网格没有开放边位于表面 {0} mm 以内，所以没有可过渡的接缝。请检查过渡到的网格，或调大接缝距离。
+
 # Build errors (NDMF)
 error.anchor_failed = {0} 上的 Surface Anchor 无法应用：{1}
 error.no_surface = {0} 上的 Surface Anchor：物体附近找不到网格表面，它不会跟随任何东西。
 error.transform_animated = {0} 上的 Surface Anchor：物体自身的位置或旋转被动画驱动。这些动画现在会相对于表面点生效；如非本意，请把它们放到子物体上。
 error.sync_duplicate = 这个模型上有多个 Yuki Blendshape Sync，只使用第一个。
+error.seam_failed = {0} 上的 Seam Normals 无法应用：{1}
+error.seam_no_surface = {0} 上的 Seam Normals：开放边附近找不到网格表面，法线保持不变。
+error.seam_no_seam = {0} 上的 Seam Normals：没有开放边位于表面 {1} mm 以内，法线保持不变。

@@ -3,16 +3,19 @@ kind: unity-upm-package
 language: csharp
 description: >
   VPM package: objects anchored to a skinned mesh surface that follow its
-  blendshapes, and automatic body-to-outfit blendshape sync. Both are NDMF
-  passes that rewrite animation clips at build time.
+  blendshapes, automatic body-to-outfit blendshape sync, and seam normals that
+  make a separate part shade like the body where they meet. All are NDMF
+  passes applied at build time.
 source:
   - Runtime/
   - Editor/
+  - Tests/
 docs: docs/
 tests:
-  command: none
+  command: Unity Test Runner, EditMode, assembly TsiYuki.Follow.Editor.Tests
   note: >
-    Compiles only inside a Unity 2022.3 project with the VRChat Avatars SDK,
-    NDMF (>=1.11) and TsiYuki Core installed. None exist yet.
+    Runs only inside a Unity 2022.3 project with the VRChat Avatars SDK,
+    NDMF (>=1.11) and TsiYuki Core installed. The tests build their geometry
+    in code and need no scene.
 conventions:
   runtime-deps: [VRChat Avatars SDK 3, NDMF, TsiYuki Core]

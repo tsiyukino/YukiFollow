@@ -17,5 +17,11 @@ Then `InPhase(Optimizing)`, after `nadena.dev.modular-avatar` and `moe.tsiyuki.w
    - In every clip that animates the blendshape, writes `m_LocalPosition.*` and, when following rotation, `localEulerAnglesRaw.*` on the matching follow transform, mapped from the blendshape curve.
    - Replaces the object with the top follow transform in `ignoreTransforms` of PhysBones whose chain contains it, so no follow transform joins a chain.
    - Warns when the object's own transform is animated.
+3. **Match seam normals** (`SeamNormalsPass.Run`), per `YukiSeamNormals`:
+   - `SeamNormalsPass.Geometry` skins the part and the surface at their current weights (`SurfaceSolver.Skin`, which also returns world normals with blendshape normal deltas applied).
+   - Resolves the surface; when unset, `SurfaceSolver.FindNearestSurface` from the centre of the part's open edges, excluding the part.
+   - `SeamNormalSolver.Solve` welds vertices by position (0.01 mm), takes open edges within `seamGap` of the surface as the seam (`SurfaceQuery.Closest` over the surface triangles near the part), walks the part's edges from the seam up to `blendWidth`, and slerps each normal toward the surface's interpolated normal with weight `1 − smoothstep(distance / blendWidth)`.
+   - Writes the blended normals back in mesh space (`SurfaceSolver.MeshNormal`) into a copy of the mesh, saves it with `ctx.AssetSaver` and assigns it to the renderer.
+   - Reports `error.seam_no_surface` or `error.seam_no_seam` and leaves the mesh alone when there is nothing to blend into.
 
 Errors go to NDMF's error report through `FollowText.Report` (keys `error.*` in `Localization/`).

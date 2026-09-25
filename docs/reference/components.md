@@ -19,3 +19,11 @@
 - `List<string> excludedBlendshapes` — name patterns never synced (`*` wildcard, case-insensitive). Default: `Shrink*`, `vrc.*`, `=*`, `-*`, `*==*`.
 - `bool copyDefaultWeights` — copy source scene values to followers at build (default true).
 - `bool syncAnimations` — add follower curves to every clip that animates the source blendshape (default true). A clip that already animates the follower's blendshape is left alone.
+
+## YukiSeamNormals
+
+`TsiYuki.Follow.YukiSeamNormals : MonoBehaviour, IEditorOnly` — on a `SkinnedMeshRenderer` whose mesh meets the body at an open edge. Consumed and removed at build.
+
+- `SkinnedMeshRenderer surface` — mesh to blend into; null picks the mesh with the nearest vertex within 5 cm of the part's open edges at build (the part itself excluded).
+- `float blendWidth` — distance along the part from the seam at which its own normals are back, 1–50 mm (default 8 mm).
+- `float seamGap` — open edges within this distance of the surface count as the seam, 0.5–20 mm (default 5 mm).

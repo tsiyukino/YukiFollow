@@ -13,7 +13,7 @@ namespace TsiYuki.Follow
     /// that drives a blendshape moving this point also gets matching transform curves, so the object
     /// follows wherever the blendshape is animated from: menus, wardrobes, Modular Avatar, VRCFury.
     /// </summary>
-    [AddComponentMenu("TsiYuki/Yuki Surface Anchor")]
+    [AddComponentMenu("TsiYuki/Follow/Yuki Surface Anchor")]
     [DisallowMultipleComponent]
     [HelpURL("https://github.com/tsiyukino/YukiFollow")]
     public sealed class YukiSurfaceAnchor : MonoBehaviour, IEditorOnly
